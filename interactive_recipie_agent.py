@@ -5,7 +5,8 @@ from typing import TypedDict
 import google.generativeai as ai
 
 # --- Configure your Google Gemini API key here ---
-ai.configure(api_key="AIzaSyAARKSW0mEBorpnhAgAGee-3ESlcwmUmXg")  # Replace with your own key
+import os
+ai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Initialize the model
 model = ai.GenerativeModel('gemini-2.0-flash')
@@ -81,4 +82,5 @@ result = graph.invoke({
 # --- Print results ---
 print("\nSuggested Recipes:\n", result['recipe'])
 print("\nShopping List:\n", result['shopping_list'])
+
 print("\nCooking Steps:\n", result['cooking_steps'])
